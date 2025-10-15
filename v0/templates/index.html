@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Poké A* — Phase 2</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Poké A* — Ash pathfinder</h1>
+      <div class="controls">
+        <button id="btn-new">New grid</button>
+        <button id="btn-start" class="secondary">Start</button>
+        <button id="btn-pause" class="secondary" disabled>Pause</button>
+        <label>Step delay:
+          <input type="range" id="delayRange" min="40" max="600" value="140" />
+          <span id="delayLabel">140ms</span>
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section id="board-wrap">
+        <div id="board"></div>
+      </section>
+
+      <section id="info">
+        <div><strong>Start (Ash):</strong> <span id="startCoord">-</span></div>
+        <div><strong>Goal (Pokéball):</strong> <span id="goalCoord">-</span></div>
+        <div><strong>Path length:</strong> <span id="pathLen">-</span></div>
+        <div><strong>Nodes expanded:</strong> <span id="expanded">-</span></div>
+
+        <hr />
+
+        <div><strong>Total cost:</strong> <span id="totalCost">-</span></div>
+        <div><strong>Current cost:</strong> <span id="currentCost">0</span></div>
+        <div><strong>Move number:</strong> <span id="moveNum">0</span></div>
+        <div><strong>Total moves expected:</strong> <span id="totalMoves">0</span></div>
+
+        <div class="legend" style="margin-top:12px;">
+          <div class="legend-item"><span class="tile normal"></span> Normal (cost 1)</div>
+          <div class="legend-item"><span class="tile mud"></span> Mud (cost 3)</div>
+          <div class="legend-item"><span class="tile wall"></span> Wall (impassable)</div>
+          <div class="legend-item"><span class="tile visited"></span> Visited (green)</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>Top-left is (0,0). Pixel-art friendly UI — works with your provided frames.</small>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

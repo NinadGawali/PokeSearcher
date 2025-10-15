@@ -1,0 +1,148 @@
+Log start: 2025-10-15 14:58:44
+
+2025-10-15 14:58:44 | Starting grid generation and placement phase.
+2025-10-15 14:58:44 | Placed Ash at (7, 1) and Pokéball at (3, 6) on existing grid.
+2025-10-15 14:58:44 | Grid generated: 8 rows x 10 cols. (top-left is (0,0)).
+2025-10-15 14:58:44 | Legend: . normal  ~ mud(cost=3)  # wall  A ash  P pokeball  * path
+2025-10-15 14:58:44 | Initial grid snapshot (with Ash and Pokéball placed):
+2025-10-15 14:58:44 | Ash (start) coordinate: (7, 1). Pokéball (goal) coordinate: (3, 6).
+
+Initial grid + entities placement:
+--- Initial placement ---
+....#.....
+...#.~....
+...#...~#~
+#~..~.P#..
+.#..#.~..#
+...#~...#~
+..#..~#.~#
+.A#.#...~.
+
+2025-10-15 14:58:44 | Finding shortest path with A* (Manhattan heuristic)...
+2025-10-15 14:58:44 | Path found. Steps (edges) from start -> goal: 9. Nodes expanded by A*: 16.
+
+A* Summary:
+Start: (7, 1)
+Goal: (3, 6)
+Path length (steps): 9
+Nodes expanded: 16
+
+--- Final path (A* result) ---
+....#.....
+...#.~....
+...#...~#~
+#~****P#..
+.#*.#.~..#
+.**#~...#~
+.*#..~#.~#
+.A#.#...~.
+
+
+Path coordinates from start -> goal (ordered):
+(7, 1), (6, 1), (5, 1), (5, 2), (4, 2), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6)
+
+2025-10-15 14:58:45 | Final path printed to console and saved to file.
+2025-10-15 14:58:51 | Animating Ash's movement along the path (recorded moves follow).
+
+Ash walking animation (sequence of positions and snapshots):
+
+Move 1/10 - Ash at (7, 1)
+....#.....
+...#.~....
+...#...~#~
+#~..~.P#..
+.#..#.~..#
+...#~...#~
+..#..~#.~#
+.A#.#...~.
+
+Move 2/10 - Ash at (6, 1)
+....#.....
+...#.~....
+...#...~#~
+#~..~.P#..
+.#..#.~..#
+...#~...#~
+.A#..~#.~#
+.*#.#...~.
+
+Move 3/10 - Ash at (5, 1)
+....#.....
+...#.~....
+...#...~#~
+#~..~.P#..
+.#..#.~..#
+.A.#~...#~
+.*#..~#.~#
+.*#.#...~.
+
+Move 4/10 - Ash at (5, 2)
+....#.....
+...#.~....
+...#...~#~
+#~..~.P#..
+.#..#.~..#
+.*A#~...#~
+.*#..~#.~#
+.*#.#...~.
+
+Move 5/10 - Ash at (4, 2)
+....#.....
+...#.~....
+...#...~#~
+#~..~.P#..
+.#A.#.~..#
+.**#~...#~
+.*#..~#.~#
+.*#.#...~.
+
+Move 6/10 - Ash at (3, 2)
+....#.....
+...#.~....
+...#...~#~
+#~A.~.P#..
+.#*.#.~..#
+.**#~...#~
+.*#..~#.~#
+.*#.#...~.
+
+Move 7/10 - Ash at (3, 3)
+....#.....
+...#.~....
+...#...~#~
+#~*A~.P#..
+.#*.#.~..#
+.**#~...#~
+.*#..~#.~#
+.*#.#...~.
+
+Move 8/10 - Ash at (3, 4)
+....#.....
+...#.~....
+...#...~#~
+#~**A.P#..
+.#*.#.~..#
+.**#~...#~
+.*#..~#.~#
+.*#.#...~.
+
+Move 9/10 - Ash at (3, 5)
+....#.....
+...#.~....
+...#...~#~
+#~***AP#..
+.#*.#.~..#
+.**#~...#~
+.*#..~#.~#
+.*#.#...~.
+
+Move 10/10 - Ash at (3, 6)
+....#.....
+...#.~....
+...#...~#~
+#~****A#..
+.#*.#.~..#
+.**#~...#~
+.*#..~#.~#
+.*#.#...~.
+2025-10-15 14:58:53 | Ash reached the Pokéball. End of run.

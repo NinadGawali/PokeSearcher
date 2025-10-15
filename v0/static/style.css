@@ -1,0 +1,171 @@
+:root{
+  --tile-size: 40px;
+  --bg-1: #f6f9ff;
+  --bg-2: #eaf2ff;
+  --panel: #ffffff;
+  --accent: #1e8fff;
+  --muted: #6b7785;
+  --tile-normal: #ffffff;   /* normal white */
+  --tile-mud: #8b5a2b;      /* brown mud */
+  --tile-wall: #111111;     /* black/dark wall */
+  --visited: #62c96f;       /* green when visited */
+  --glass: rgba(30,143,255,0.06);
+  --font: "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:var(--font);
+  background: linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 100%);
+  color:#0b2140;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+#app{
+  width:100%;
+  max-width:1100px;
+  background:var(--panel);
+  border-radius:12px;
+  box-shadow: 0 10px 30px rgba(14,30,60,0.08);
+  overflow:hidden;
+}
+
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(11,33,64,0.04);
+}
+header h1{margin:0;font-size:1.15rem;color:var(--accent);font-weight:700}
+.controls{display:flex;gap:12px;align-items:center}
+.controls button{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  font-weight:600;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow: 0 4px 10px rgba(30,143,255,0.12);
+}
+.controls label{font-size:0.9rem;color:var(--muted)}
+
+main{
+  display:flex;
+  gap:18px;
+  padding:20px;
+}
+
+#board-wrap{
+  background: linear-gradient(180deg, rgba(30,143,255,0.03), rgba(11,33,64,0.01));
+  padding:12px;
+  border-radius:10px;
+  box-shadow: inset 0 3px 8px rgba(14,30,60,0.02);
+  position: relative;
+}
+#board{
+  display:grid;
+  grid-auto-columns: var(--tile-size);
+  grid-auto-rows: var(--tile-size);
+  gap:4px;
+  background: transparent;
+  padding:6px;
+  position: relative;
+}
+
+/* each tile */
+.tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:0.8rem;
+  border-radius:8px;
+  image-rendering: pixelated;
+  overflow:hidden;
+  box-shadow: 0 2px 6px rgba(11,33,64,0.03);
+  transition: background-color 160ms linear, transform 120ms linear;
+}
+
+/* base tile visuals */
+.cell-normal{ background: linear-gradient(180deg,#ffffff,var(--tile-normal)); border:1px solid rgba(11,33,64,0.04); }
+.cell-mud{ background: linear-gradient(180deg,#a36f45,var(--tile-mud)); color:#fff; border:1px solid rgba(11,33,64,0.04); }
+.cell-wall{ background: linear-gradient(180deg,#2b2b2b,var(--tile-wall)); color:#fff; border:1px solid rgba(255,255,255,0.02); }
+
+/* visited (turns green when Ash walked) */
+.cell-visited {
+  background: linear-gradient(180deg, rgba(98,201,111,0.95), rgba(92,187,102,0.9));
+  color: #043018;
+  border: 1px solid rgba(20,80,40,0.12);
+  box-shadow: 0 3px 8px rgba(20,80,40,0.08);
+}
+
+/* path overlay (still visible if not visited) */
+.cell-path {
+  position: relative;
+}
+.cell-path::after{
+  content:'';
+  position:absolute;
+  inset:6px;
+  border-radius:6px;
+  background: linear-gradient(180deg, rgba(30,143,255,0.55), rgba(30,143,255,0.25));
+  opacity:0.95;
+  mix-blend-mode:normal;
+}
+
+/* Ash styling (sprite) */
+.ash {
+  width: calc(var(--tile-size) * 0.9);
+  height: calc(var(--tile-size) * 0.9);
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateZ(0);
+  will-change: transform, background-image;
+  pointer-events: none;
+  display:block;
+  border-radius:6px;
+}
+
+/* Pokéball */
+/* Pokéball (using actual image) */
+.pokeball {
+  width: calc(var(--tile-size) * 0.9);
+  height: calc(var(--tile-size) * 0.9);
+  background: url("/static/sprites/pokeball.png") center center / contain no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* Info column */
+#info{ width:320px;}
+#info div{ margin-bottom:8px; color:#0b2140 }
+.legend{ display:flex; gap:8px; margin-top:8px; flex-wrap:wrap}
+.legend-item{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:0.95rem}
+.legend .tile{ width:20px;height:20px;border-radius:4px; display:inline-block}
+.legend .normal{ background:linear-gradient(180deg,#ffffff,var(--tile-normal)); border:1px solid rgba(11,33,64,0.03)}
+.legend .mud{ background:linear-gradient(180deg,#a36f45,var(--tile-mud)); border:1px solid rgba(11,33,64,0.03)}
+.legend .wall{ background:linear-gradient(180deg,#2b2b2b,var(--tile-wall)); border:1px solid rgba(255,255,255,0.02)}
+.legend .visited{ background: linear-gradient(180deg,var(--visited), #45a85c); border:1px solid rgba(20,80,40,0.06) }
+
+footer{ padding:12px 20px; font-size:0.85rem; color:rgba(11,33,64,0.7); border-top:1px solid rgba(11,33,64,0.03)}
+
+/* responsive */
+@media (max-width:900px){
+  main{ flex-direction:column; align-items:center }
+  #info{ width:auto }
+}
